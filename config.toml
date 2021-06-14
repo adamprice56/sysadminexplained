@@ -102,7 +102,7 @@ enabled = true
 avatar = "images/avatar.png"
 author = "Adam"
 author_title = "IT Guy"
-author_description = "Good Good Study, Day Day Up~"
+author_description = "The more you break, the more you learn to fix."
 location = "Manchester, UK"
 follow = "https://github.com/adamprice56"
 
@@ -116,7 +116,7 @@ rss = "/index.xml"
 [params.site]
 title = "Hugo"
 favicon = "images/favicon.ico"
-board = "<p>enjoy~</p>"
+board = "<p>enjoy</p>"
 
 [params.site.logo]
 enabled = true
