@@ -1,7 +1,7 @@
 ---
 title: "Cloudflare Tunnels on Windows"
 date: 2021-06-14T19:53:28+01:00
-draft: true
+draft: false
 ---
 
 The documentation for running cloudflared appears to be somewhat lacking and/or confusing to most people. It's fine for people that are familiar with cloudflared and it's inner workings, but for a newcomer, it's a bit daunting.
