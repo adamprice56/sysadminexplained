@@ -144,14 +144,6 @@ visitor = false
 [params.donate]
 enable = false
 
-[params.donate.wechatpay]
-qrcode = "donate/wechatpayimg.png"
-title = "微信支付"
-
-[params.donate.alipay]
-qrcode = "donate/alipayimg.png"
-title = "支付宝"
-
 [params.pv.busuanzi]
 enable = false
 
