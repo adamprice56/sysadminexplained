@@ -1,165 +1,129 @@
+PygmentsCodeFences = false
 baseURL = "/"
-languageCode = "en-gb"
-title = "Sysadmin Explained"
-theme = "pure"
-
 copyright = "CC BY 4.0"
 defaultContentLanguage = "en"
-footnoteReturnLinkContents = "↩"
-hasCJKLanguage = true
-paginate = 7
 enableEmoji = true
-PygmentsCodeFences = false
+footnoteReturnLinkContents = "↩"
 googleAnalytics = ""
-
-[permalinks]
-posts = "/:year/:month/:filename/"
-
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
-
-[outputFormats.SearchIndex]
-mediaType = "application/json"
-baseName = "searchindex"
-isPlainText = true
-notAlternative = true
-
-[outputs]
-home = [ "HTML", "RSS", "SearchIndex" ]
-
-[sitemap]
-changefreq = "monthly"
-filename = "sitemap.xml"
-priority = 0.5
-
-[[menu.main]]
-identifier = "home"
-name = "Home"
-title = "Home"
-url = "/"
-weight = 1
-
-[[menu.main]]
-identifier = "archives"
-name = "Archives"
-title = "Archives"
-url = "/posts/"
-weight = 2
-
-[[menu.main]]
-identifier = "categories"
-name = "Categories"
-title = "Categories"
-url = "/categories/"
-weight = 3
-
+hasCJKLanguage = true
+languageCode = "en-gb"
+paginate = 7
+theme = "pure"
+title = "Sysadmin Explained"
 [[menu.main]]
 identifier = "tags"
 name = "Tags"
 title = "Tags"
 url = "/tags/"
 weight = 4
-
 [[menu.main]]
-identifier = "about"
-name = "About"
-title = "About"
-url = "/about/"
-weight = 5
-
+identifier = "categories"
+name = "Categories"
+title = "Categories"
+url = "/categories/"
+weight = 3
+[[menu.main]]
+identifier = "archives"
+name = "Archives"
+title = "Archives"
+url = "/posts/"
+weight = 2
+[[menu.main]]
+identifier = "home"
+name = "Home"
+title = "Home"
+url = "/"
+weight = 1
+[outputFormats.SearchIndex]
+baseName = "searchindex"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+[outputs]
+home = ["HTML", "RSS", "SearchIndex"]
 [params]
-since = 2_017
-dateFormatToUse = "2006-01-02"
-enablePostCopyright = true
 copyright_link = "http://creativecommons.org/licenses/by/4.0"
-mainSections = [ "posts" ]
+dateFormatToUse = "2006-01-02"
 enableMathJax = true
+enablePostCopyright = true
+mainSections = ["posts"]
 sidebar = "right"
-widgets = [ "board", "tag_cloud", "category", "tag", "recent_posts" ]
-
-[params.highlightjs]
-langs = [ "python", "javascript" ]
-
-[params.tag_cloud]
-min = 8
-max = 20
-
-[params.menuIcons]
-enable = true
-home = "icon-home-fill"
-archives = "icon-archives-fill"
-categories = "icon-folder"
-tags = "icon-tags"
-repository = "icon-project"
-books = "icon-book-fill"
-links = "icon-friendship"
-about = "icon-cup-fill"
-
-[params.profile]
-enabled = true
-avatar = "images/avatar.png"
-author = "Adam"
-author_title = "IT Guy"
-author_description = "The more you break, the more you learn to fix."
-location = "Manchester, UK"
-follow = "https://github.com/adamprice56"
-
-[params.profile.social]
-link_tooltip = false
-
-[params.profile.social.links]
-github = "https://github.com/adamprice56"
-rss = "/index.xml"
-
-[params.site]
-title = "Hugo"
-favicon = "images/favicon.ico"
-board = "<p>enjoy</p>"
-
-[params.site.logo]
-enabled = true
-width = 40
-height = 40
-url = "images/favicon.ico"
-
-[params.share]
-enable = true
-sites = "weibo,qq,wechat,facebook,twitter"
-mobile_sites = "weibo,qq,qzone"
-
+since = 2017
+widgets = ["board", "tag_cloud", "category", "tag", "recent_posts"]
 [params.comment]
 disqus = "your_disqus_name"
-
 [params.comment.gitalk]
-
 [params.comment.valine]
-placeholder = "enjoy~"
 avatar = "mm"
 meta = "nick,mail"
 pageSize = 10
+placeholder = "enjoy~"
 visitor = false
-
+[params.config]
+excerpt_link = "Read More"
+layout = "main-center"
+skin = "theme-black"
+toc = true
 [params.donate]
 enable = false
-
-[params.pv.busuanzi]
-enable = false
-
-[params.pv.leancloud]
-enable = false
-
+[params.highlightjs]
+langs = ["python", "javascript"]
+[params.menuIcons]
+about = "icon-cup-fill"
+archives = "icon-archives-fill"
+books = "icon-book-fill"
+categories = "icon-folder"
+enable = true
+home = "icon-home-fill"
+links = "icon-friendship"
+repository = "icon-project"
+tags = "icon-tags"
 [params.postCount]
 enable = true
-wordcount = true
 min2read = true
-
-[params.config]
-skin = "theme-black"
-layout = "main-center"
-excerpt_link = "Read More"
-toc = true
-
+wordcount = true
+[params.profile]
+author = "Adam"
+author_description = "The more you break, the more you learn to fix."
+author_title = "IT Guy"
+avatar = "images/avatar.png"
+enabled = true
+follow = "https://github.com/adamprice56"
+location = "Manchester, UK"
+[params.profile.social]
+link_tooltip = false
+[params.profile.social.links]
+github = "https://github.com/adamprice56"
+rss = "/index.xml"
+[params.pv.busuanzi]
+enable = false
+[params.pv.leancloud]
+enable = false
 [params.search]
 enable = true
+[params.share]
+enable = true
+mobile_sites = "weibo,qq,qzone"
+sites = "weibo,qq,wechat,facebook,twitter"
+[params.site]
+board = "<p>enjoy</p>"
+favicon = "images/favicon.ico"
+title = "Hugo"
+[params.site.logo]
+enabled = true
+height = 40
+url = "images/favicon.ico"
+width = 40
+[params.tag_cloud]
+max = 20
+min = 8
+[permalinks]
+posts = "/:year/:month/:filename/"
+[sitemap]
+changefreq = "monthly"
+filename = "sitemap.xml"
+priority = 0.5
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
