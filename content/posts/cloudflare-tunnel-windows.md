@@ -15,7 +15,7 @@ Say goodbye to old fashioned VPN's, say hello to zero-trust!
 
 To read more about the concept of "Zero Trust" - Cloudflare have written a pretty neat article about it, I'll let them do the explaining... https://www.cloudflare.com/en-gb/learning/security/glossary/what-is-zero-trust/
 
-## Installation & Setup
+## Installation & Authentication
 
 First, grab the 64-bit ZIP from here: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/installation#windows
 
@@ -49,15 +49,17 @@ Once you're done, you should see a success message in powershell and you'll now 
 
 ![image-20210614212106608](/images/posts/image-20210614212106608-1623702207236.png)
 
-Next, we need to create a tunnel and give it a name
+# Tunnel Creation
+
+Next, we need to create a tunnel and give it a name.
 
     .\cloudflared.exe tunnel create mytunnel
 
 ![](/uploads/screenshot-2021-06-15-213013.png)
 
-Make a note of the tunnel ID shown here for reference later. You'll need it for your config file! 
+Make a note of the tunnel ID and the location the json file is stored for reference later. You'll need it for your config file! 
 
-_You may also see a message that cloudflared needs updating, this is fine to ignore, we'll address this later!_
+_You may also see a message that cloudflared needs updating, this is fine to ignore, we'll address this later._
 
 You can check the status of your tunnel(s) by running a list command
 
@@ -66,3 +68,13 @@ You can check the status of your tunnel(s) by running a list command
 ![](/uploads/screenshot-2021-06-15-213206.png)
 
 As you can see here, mytunnel has been created and has no connections currently. You can also see the status of any other tunnels e.g. ls02 shown here is currently connected to Cloudflares LHR (London Heathrow) and Dublin datacenters twice. Cloudflare tunnels automatically set up redundant connections to provide automatic load balancing and failover between Cloudflare endpoints, handy!
+
+# Tunnel Configuration
+
+Cloudflared created a hidden folder in your C:/users/youruser folder which stores the configuration files for the tunnel once created. To start routing things to the tunnel, we need to create a config.yaml file with some rules to tell cloudflare what services are available on the tunnel. You can add web servers/services, RDP and SSH sessions currently. 
+
+_You can also go a step further and present an entire subnet to cloudflared which can be used in conjunction with the warp client (a.k.a 1.1.1.1) on another device to VPN into your network via the tunnel, but that is for another guide!_
+
+To access this folder from powershell, you can use the following command. (Of course, replace it with your username as shown in the output after creating your tunnel above)
+
+    explorer.exe C:\Users\Adam\.cloudflared\
