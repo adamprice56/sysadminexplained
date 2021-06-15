@@ -78,3 +78,9 @@ _You can also go a step further and present an entire subnet to cloudflared whic
 To access this folder from powershell, you can use the following command. (Of course, replace it with your username as shown in the output after creating your tunnel above)
 
     explorer.exe C:\Users\Adam\.cloudflared\
+
+You need to create a file called config.yaml in here. To do this, you will need to enable file name extensions. Then you can right click and use new > Text Document and name it config.yaml, then click yes to the prompt shown. 
+
+![](/uploads/screenshot-2021-06-15-235212.png)
+
+To edit the yaml file, notepad is fine, but I'd suggest using VS Code or Notepad++ to ensure the formatting is correct and to help with syntax.
