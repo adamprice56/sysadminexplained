@@ -84,3 +84,46 @@ You need to create a file called config.yaml in here. To do this, you will need 
 ![](/uploads/screenshot-2021-06-15-235212.png)
 
 To edit the yaml file, notepad is fine, but I'd suggest using VS Code or Notepad++ to ensure the formatting is correct and to help with syntax.
+
+    tunnel: 6607f8bc-6cd2-4667-b715-4148c705cbc9
+    credentials-file: C:/Users/Adam/.cloudflared/6607f8bc-6cd2-4667-b715-4148c705cbc9.json
+    
+    ingress:
+      - hostname: rdp.sysadminexplained.uk
+        service: rdp://localhost:3389
+      # Catch All:
+      - service: http_status:404
+
+As shown in the example, fill in your tunnel ID, along with the location to the json file in your .cloudflared folder. For the ingress rule, this example shows an RDP session presented via rdp.sysadminexplained.uk along with a catch all for any unknown traffic to direct to a 404 page.
+
+Save the yaml file and go back to your powershell session. You can now test your tunnel!
+
+    .\cloudflared.exe tunnel run mytunnel
+
+![](/uploads/screenshot-2021-06-15-235817.png)
+
+The tunnel is now up and running, with 4 connections to cloudflare, great!
+
+# DNS Records
+
+Wait... It doesn't work, what gives!
+
+![](/uploads/screenshot-2021-06-15-235927.png)
+
+![](/uploads/screenshot-2021-06-15-235939.png)
+
+Currently, the tunnel is up and running, but cloudflare is not directing any traffic to the tunnel. This is where DNS records come in. At this point, you have your machine connected to cloudflare, but cloudflare has no idea what traffic to send to your machine, so we need to tell it. 
+
+WIP
+
+_Take the ID of the tunnel and add it onto .cfargotunnel.com_
+
+_Add a cname record for rdp.sysadminexplained.uk > 6607f8bc-6cd2-4667-b715-4148c705cbc9.cfargotunnel.com with cloudflare proxying enabled._ 
+
+# Running as a service
+
+WIP
+
+# Security & Access control
+
+WIP
