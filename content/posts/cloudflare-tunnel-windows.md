@@ -48,3 +48,21 @@ At this point, your browser should pop up and ask for a cloudflare login, log in
 Once you're done, you should see a success message in powershell and you'll now have a cert.pem file saved. Keep this safe!
 
 ![image-20210614212106608](/images/posts/image-20210614212106608-1623702207236.png)
+
+Next, we need to create a tunnel and give it a name
+
+    .\cloudflared.exe tunnel create mytunnel
+
+![](/uploads/screenshot-2021-06-15-213013.png)
+
+Make a note of the tunnel ID shown here for reference later. You'll need it for your config file! 
+
+_You may also see a message that cloudflared needs updating, this is fine to ignore, we'll address this later!_
+
+You can check the status of your tunnel(s) by running a list command
+
+    .\cloudflared.exe tunnel list
+
+![](/uploads/screenshot-2021-06-15-213206.png)
+
+As you can see here, mytunnel has been created and has no connections currently. You can also see the status of any other tunnels e.g. ls02 shown here is currently connected to Cloudflares LHR (London Heathrow) and Dublin datacenters twice. Cloudflare tunnels automatically set up redundant connections to provide automatic load balancing and failover between Cloudflare endpoints, handy!
