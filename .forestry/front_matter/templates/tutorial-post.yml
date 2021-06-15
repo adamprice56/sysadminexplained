@@ -4,7 +4,11 @@ hide_body: false
 fields:
 - type: text
   name: title
-  label: title
+  label: Title
 - type: datetime
   name: date
-  label: date
+  label: Date
+- name: tags
+  type: tag_list
+  default: []
+  label: Tags
