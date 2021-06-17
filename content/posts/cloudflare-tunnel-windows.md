@@ -57,7 +57,7 @@ Next, we need to create a tunnel and give it a name.
 
 ![](/uploads/screenshot-2021-06-15-213013.png)
 
-Make a note of the tunnel ID and the location the json file is stored for reference later. You'll need it for your config file! 
+Make a note of the tunnel ID and the location the json file is stored for reference later. You'll need it for your config file!
 
 _You may also see a message that cloudflared needs updating, this is fine to ignore, we'll address this later._
 
@@ -71,7 +71,7 @@ As you can see here, mytunnel has been created and has no connections currently.
 
 # Tunnel Configuration
 
-Cloudflared created a hidden folder in your C:/users/youruser folder which stores the configuration files for the tunnel once created. To start routing things to the tunnel, we need to create a config.yaml file with some rules to tell cloudflare what services are available on the tunnel. You can add web servers/services, RDP and SSH sessions currently. 
+Cloudflared created a hidden folder in your C:/users/youruser folder which stores the configuration files for the tunnel once created. To start routing things to the tunnel, we need to create a config.yaml file with some rules to tell cloudflare what services are available on the tunnel. You can add web servers/services, RDP and SSH sessions currently.
 
 _You can also go a step further and present an entire subnet to cloudflared which can be used in conjunction with the warp client (a.k.a 1.1.1.1) on another device to VPN into your network via the tunnel, but that is for another guide!_
 
@@ -79,7 +79,7 @@ To access this folder from powershell, you can use the following command. (Of co
 
     explorer.exe C:\Users\Adam\.cloudflared\
 
-You need to create a file called config.yaml in here. To do this, you will need to enable file name extensions. Then you can right click and use new > Text Document and name it config.yaml, then click yes to the prompt shown. 
+You need to create a file called config.yaml in here. To do this, you will need to enable file name extensions. Then you can right click and use new > Text Document and name it config.yaml, then click yes to the prompt shown.
 
 ![](/uploads/screenshot-2021-06-15-235212.png)
 
@@ -112,18 +112,44 @@ Wait... It doesn't work, what gives!
 
 ![](/uploads/screenshot-2021-06-15-235939.png)
 
-Currently, the tunnel is up and running, but cloudflare is not directing any traffic to the tunnel. This is where DNS records come in. At this point, you have your machine connected to cloudflare, but cloudflare has no idea what traffic to send to your machine, so we need to tell it. 
+Currently, the tunnel is up and running, but cloudflare is not directing any traffic to the tunnel. This is where DNS records come in. At this point, you have your machine connected to cloudflare, but cloudflare has no idea what traffic to send to your machine, so we need to tell it.
 
-WIP
+Log into your Cloudflare dashboard (https://dash.cloudflare.com), Select your domain and go to DNS.
 
-_Take the ID of the tunnel and add it onto .cfargotunnel.com_
+Add a new CNAME record using your rdp hostname and use the tunnel ID with .cfargotunnel.com added on the end.
 
-_Add a cname record for rdp.sysadminexplained.uk > 6607f8bc-6cd2-4667-b715-4148c705cbc9.cfargotunnel.com with cloudflare proxying enabled._ 
+![](/uploads/screenshot-2021-06-17-233955.png)
+
+In this case, rdp.sysadminexplained.uk will direct to 6607f8bc-6cd2-4667-b715-4148c705cbc9.cfargotunnel.com which is the mytunnel cloudflared tunnel. Make sure to leave proxying enabled!
+
+Save the record and your DNS is ready to go. But it won't work yet... RDP sessions are a special case and won't work until you set up Cloudflare for Teams to proxy the session correctly via cloudflared. Besides... You don't want a public facing RDP server!
+
+# Access Control
+
+Cloudflare for Teams is a service that is bolted on top of the standard Cloudflare lineup and provides application based access control for your services. It acts as a middle man between outside users/devices and your private network behind Cloudflare.
+
+When using RDP sessions, Cloudflare will trigger the cloudflared client on the client machine to connect to cloudflare on your behalf and then initiate the RDP session over this tunnel.
+
+To set this up, open up your Teams dashboard (https://dash.teams.cloudflare.com) and go to Access > Applications and click Add an application.
+
+Choose Self Hosted.
+
+![](/uploads/screenshot-2021-06-17-234857.png)
+
+Fill in the information required, Application Name, URL and you can add a logo (optional).
+
+![](/uploads/screenshot-2021-06-17-234928.png)
+
+By default, you should have a One-time PIN option for you identity providers, this is just the typical email me a code and enter the code to access. We'll need to set which emails/devices have access in the next step.
+
+![](/uploads/screenshot-2021-06-17-235241.png)
+
+This part is entirely up to you, the above example shows you some ideas for giving access based on specific IPs, emails or domains. Just note that if you want to allow certain IP addresses in, you must set the rule action to bypass which will skip authentication fully for those IP addresses.
+
+![](/uploads/screenshot-2021-06-17-235448.png)
+
+On the next page, scroll down to the bottom and enable cloudflared authentication. You also have an option to enable a VNC web rendering session (This doesn't work with RDP, but if you have VNC running on the server, it may work... I've not tested it)
 
 # Running as a service
-
-WIP
-
-# Security & Access control
 
 WIP
