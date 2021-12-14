@@ -5,7 +5,7 @@ admin_path: "/static/admin"
 webhook_url: 
 sections:
 - type: directory
-  path: content/posts
+  path: ''
   label: Posts
   create: all
   match: "**/*"
